@@ -13,7 +13,7 @@ T.style3()
 
 so on...
 
-so far, styles 1-6 are numbered
+so far, styles 1-5 are numbered
                                             
 while style 6-8 are not numbered
 
