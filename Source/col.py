@@ -1,3 +1,5 @@
+# feel free to modify and new/better colours
+
 class colours:
 	red = '\033[0;31m'
 	green = '\033[32m'
