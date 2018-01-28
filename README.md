@@ -10,14 +10,7 @@ T.style3()
 
 so on...
 
-so far, styles 1-6 are numbered:
-i.e. could look something like this (depending on chosen style)
-+====================================================+
-|  1. passive             ||  2. active              |
-|  3. vulnerability       ||  4. exploitation        |
-|  5. post-exploitation   ||  6. tools               |
-+====================================================+ 
-                                            (style2)
+so far, styles 1-6 are numbered
                                             
 while style 6-8 are not numbered
 
