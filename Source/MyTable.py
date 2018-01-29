@@ -2,7 +2,15 @@
 from col import colours as C
 
 class Table(object):
-
+	"""
+	Create your own styled tables, numbered for menus, or non-numbered possibly for general information
+	Instantiation is as follows:
+	
+	T = MyTable.Table(["any", "list", "data", "..."], 2) # pass in a list of data; and specify the number of prefered columns
+	T.style("|", "=", "#")			# first=verical border, second=horizontal, third[optional]=edges
+	T.colour("\033[1;31m", "\033[0;32m")	# an easier option for colour is to import col, for ease
+	T.make_table()	or T.numberless_table() # either of these will print your table to screen
+	"""
 	def __init__(self, data, column):
 		self.column = column
 		self.data = data
