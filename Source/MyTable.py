@@ -1,6 +1,9 @@
 # coded by jumb0
 from col import colours as C
-# within numberless method, self.defaultSpacing should be set to 3
+
+# within numberless method, self.defaultSpacing should be 3
+# new objective: find logical errors
+# think about adding append option, for appending to a list while a list table has already been created
 
 class Table(object):
 	"""
@@ -15,6 +18,7 @@ class Table(object):
 	T.colour("\033[1;31m", "\033[0;32m")	# an easier option for colour is to import col, for ease
 	T.make_table()	or T.numberless_table() # either of these will print your table to screen
 	"""
+
 	def __init__(self, data, column):
 		self.column = column
 		self.data = data
@@ -30,19 +34,75 @@ class Table(object):
 			for i in range(len(self.data)):
 				if i % self.column == 0:
 					self.row += 1
-
+			#colour and styling variables
 		self.borders = C.darkgrey; self.text = C.cyan
 		self.defaultStyle = ["|", "-", "+"]
 		self.defaultSpacing = 6
+		self.number_colour = C.lightgrey
 
 	def title(self, t):
 		print("-"*self.column + "[", t, "]" + "-"*self.column)
 
-	def colour(self, borderC, textC):
-		self.borders = borderC
-		self.text = textC
+	def colour(self, **kwargs):
+		"""
+		keyword arguments include: border | text | number
+		you should assign a colour to the specified keyword arg, e.g:
+		example.colour(borders="\033[0;31m"...)
+		example.colour(number="colour goes here", text="colour goes here")
+		-> arguments needn't be ordered, nor do they have to all be selected
+		together. Each argument could be processed individually.
+		"""
+		if len(kwargs)==1:
+			try:
+				self.borders = kwargs["border"]
+				return(None)
+			except: pass
+			try:
+				self.text = kwargs["text"]
+				return(None)
+			except: pass
+			try:
+				self.number_colour = kwargs["number"]
+				return(None)
+			except: pass
+		elif len(kwargs)==2:
+			try:
+				self.borders = kwargs["border"]
+				self.text = kwargs["text"]
+				return(None)
+			except: pass
+			try:
+				self.borders = kwargs["border"]
+				self.number_colour = kwargs["number"]
+				return(None)
+			except: pass
+			try: 
+				self.text = kwargs["text"]
+				self.number_colour = kwargs["number"]
+				return(None)
+			except: pass
+		elif len(kwargs)==3:
+			try:
+				self.borders = kwargs["border"]
+				self.text = kwargs["text"]
+				self.number_colour = kwargs["number"]
+				return(None)
+			except: pass
+		else:
+			self.borders = C.blue
+			self.text = C.orange
+			self.number_colour = C.green  # possibly add randomly selected colouring if args not specified?
 
 	def style(self, *args):
+		"""
+		the arguments to this method should include the vertical character, horizontal character and edges (optional)
+		an example of how to create a stylish table may follow through as:
+		example.table("|", "=", "/")
+		in which case would look like: /=========/
+					       | a  || b |
+					       /=========/
+		it must be vertical first, and then horizontal second, with edges as optional third					       
+		"""
 		if len(args) > 2:
 			self.defaultStyle = [args[0], args[1], args[2]]
 		else:
@@ -68,9 +128,9 @@ class Table(object):
 				if counter % self.column == 0 and counter > 0:
 					print("")
 				if counter+1 < 10:
-					print("{}{}{} ".format(self.borders, self.defaultStyle[0], C.end), "{}{}.{} {}{}{}".format(C.green, counter+1, C.end, self.text, i, C.end), " "*self.addon, "{}{}{}".format(self.borders, self.defaultStyle[0], C.end), end="",)
+					print("{}{}{} ".format(self.borders, self.defaultStyle[0], C.end), "{}{}.{} {}{}{}".format(self.number_colour, counter+1, C.end, self.text, i, C.end), " "*self.addon, "{}{}{}".format(self.borders, self.defaultStyle[0], C.end), end="",)
 				else:
-					print("{}{}{} {}{}.{} {}{}{}".format(self.borders, self.defaultStyle[0], C.end, C.green, counter+1, C.end, self.text, i, C.end), " "*self.addon, "{}{}{}".format(self.borders, self.defaultStyle[0], C.end), end="",)
+					print("{}{}{} {}{}.{} {}{}{}".format(self.borders, self.defaultStyle[0], C.end, self.number_colour, counter+1, C.end, self.text, i, C.end), " "*self.addon, "{}{}{}".format(self.borders, self.defaultStyle[0], C.end), end="",)
 				pipelines+=2
 			except:
 				pass
@@ -93,7 +153,7 @@ class Table(object):
 
 
 	def numberless_table(self):
-		self.defaultSpacing = 3 
+		self.defaultSpacing = 3
 		for n in range(self.column):
 			if (n > 0) and (n < self.column):
 				print("{}".format(self.borders) + self.defaultStyle[1]*(self.defaultSpacing+self.Max_Length+3)+ "{}".format(C.end), end="",)
