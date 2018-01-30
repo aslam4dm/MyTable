@@ -1,6 +1,6 @@
 # coded by jumb0
 from col import colours as C
-# within default spacing, self.defaultSpacing should be set to 3
+# within numberless method, self.defaultSpacing should be set to 3
 
 class Table(object):
 	"""
