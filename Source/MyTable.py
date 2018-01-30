@@ -1,7 +1,6 @@
 # coded by jumb0
 from col import colours as C
-# *potential issues* (not yet classified): self.defaultSpacing in numberless_table
-#	requires testing
+# within default spacing, self.defaultSpacing should be set to 3
 
 class Table(object):
 	"""
@@ -94,7 +93,7 @@ class Table(object):
 
 
 	def numberless_table(self):
-		self.defaultSpacing = 4  # old value was 3 
+		self.defaultSpacing = 3 
 		for n in range(self.column):
 			if (n > 0) and (n < self.column):
 				print("{}".format(self.borders) + self.defaultStyle[1]*(self.defaultSpacing+self.Max_Length+3)+ "{}".format(C.end), end="",)
