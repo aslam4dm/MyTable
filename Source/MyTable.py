@@ -41,7 +41,7 @@ class Table(object):
 		self.number_colour = C.lightgrey
 
 	def title(self, t):
-		print("-"*self.column + "[", t, "]" + "-"*self.column)
+		print("-"*self.column + "[", t.upper(), "]" + "-"*self.column)
 
 	def colour(self, **kwargs):
 		"""
