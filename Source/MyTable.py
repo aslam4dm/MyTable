@@ -97,10 +97,11 @@ class Table(object):
 		"""
 		the arguments to this method should include the vertical character, horizontal character and edges (optional)
 		an example of how to create a stylish table may follow through as:
-		example.table("|", "=", "/")
-		in which case would look like: /=========/
-					       | a  || b |
-					       /=========/
+		example = MyTable.Table(["a","b"], 2)
+		example.style("|", "=", "/"); example.numberless_table()
+		in which case would look (something) like: 	/============/
+					       			|  a  ||  b  |
+					       			/============/
 		it must be vertical first, and then horizontal second, with edges as optional third					       
 		"""
 		if len(args) > 2:
