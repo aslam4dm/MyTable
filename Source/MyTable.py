@@ -13,7 +13,6 @@ class Table(object):
 	T.style("|", "=", "#")			# first=verical border, second=horizontal, third[optional]=edges
 	T.colour("\033[1;31m", "\033[0;32m")	# an easier option for colour is to import col, for ease
 	T.make_table()	or T.numberless_table() # either of these will print your table to screen
-	
 	"""
 	def __init__(self, data, column):
 		self.column = column
